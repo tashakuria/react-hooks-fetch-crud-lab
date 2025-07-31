@@ -7,25 +7,29 @@ function App() {
   const [page, setPage] = useState("List");
   const [questions, setQuestions] = useState([]);
 
-  
+  // ✅ Fetch questions from server on initial load
   useEffect(() => {
     fetch("http://localhost:4000/questions")
       .then((res) => res.json())
-      .then(setQuestions);
+      .then((data) => {
+        console.log("Fetched questions:", data); // optional debug
+        setQuestions(data);
+      });
   }, []);
 
-  
+  // ✅ Add new question to state
   function handleAddQuestion(newQuestion) {
+    console.log("New question added to state:", newQuestion); // optional debug
     setQuestions([...questions, newQuestion]);
   }
 
-  
+  // ✅ Delete question by ID
   function handleDeleteQuestion(id) {
     const updatedQuestions = questions.filter((q) => q.id !== id);
     setQuestions(updatedQuestions);
   }
 
-  
+  // ✅ Update correct answer for a question
   function handleUpdateQuestion(updatedQuestion) {
     const updatedQuestions = questions.map((q) =>
       q.id === updatedQuestion.id ? updatedQuestion : q
@@ -50,3 +54,4 @@ function App() {
 }
 
 export default App;
+
