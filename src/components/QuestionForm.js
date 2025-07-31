@@ -31,7 +31,7 @@ function QuestionForm({ onAddQuestion }) {
       correctIndex: parseInt(formData.correctIndex),
     };
 
-    console.log("Submitting:", newQuestion); // debug
+    console.log("Submitting:", newQuestion);
 
     fetch("http://localhost:4000/questions", {
       method: "POST",
